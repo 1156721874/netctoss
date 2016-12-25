@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="cost" namespace="/cost" extends="netctoss">
+		<action name="findCost" class="FindCostAction" method="execute">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<param name="pagesize">4</param>
+			<result name="success">/WEB-INF/jsp/findCost.jsp</result>
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+		</action>
+		<action name="deleteCost" class="DeleteCostAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="redirectAction">
+				findCost
+			</result>
+		</action>
+		<!-- 跳转到新增页面的Action -->
+		<action name="toAddCost">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/jsp/addCost.jsp</result>
+		</action>
+		<!-- 新增资费的ACtion -->
+		<action name="AddCost" class="AddCostAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="redirectAction">
+				findCost
+			</result>
+		</action>
+		<!-- 新增表单验证Action -->
+		<action name="AddCostValidate" class="AddCostValidateAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">pass</param>
+			</result>
+		</action>
+		<!-- 跳转到修改页面的ACtion  -->
+		<action name="toUpdateCost" class="ToUpdateAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/jsp/updateCost.jsp</result>
+		</action>
+
+		<!-- 修改保存的ACtion  -->
+		<action name="updateCost" class="UpdateAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="redirectAction">
+				findCost
+			</result>
+		</action>
+		<!-- 更新资费名称验证 -->
+		<action name="updateCostValidate" class="UpdateCostValidateAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">pass</param>
+			</result>
+		</action>
+		<action name="startCost" class="StartCostAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">pass</param>
+			</result>
+		</action>
+		<action name="toCostDetail" class="ToCostDetailAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/jsp/fee_detail.jsp</result>
+		</action>
+	</package>
+
+</struts>

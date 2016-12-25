@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+<!-- 登录模块 -->
+	<package name="login" namespace="/login" extends="netctoss">
+		<!-- 跳转到登录页面的ACtion -->
+		<action name="toLogin" class="com.netctoss.action.login.LoginAction" method="quit">
+			<result name="success">/WEB-INF/main/login.jsp</result>
+		</action>
+		<!-- 登录验证的Acrtion -->
+		<action name="login" class="com.netctoss.action.login.LoginAction">
+			<result name="success">/WEB-INF/main/index.jsp</result>
+			<result name="error">/WEB-INF/main/login.jsp</result>
+		</action>
+		<!-- 生成验证马图片 -->
+		<action name="validateCode"
+			class="com.netctoss.action.login.ValidateCodeAction">
+			<result name="success" type="stream">
+				<param name="inputName">imageStream</param>
+			</result>
+		</action>
+		
+		<action name="toindex">
+		<result name="success">/WEB-INF/main/index.jsp</result>
+		</action>
+	</package>
+	</struts>

@@ -1,0 +1,321 @@
+博客刚开张，里面的东西还比较少，就把原来的一些学习笔记搬上来吧。
+     首先说Dom4j。Dom4j是什么？说直白一点就是一个用于解析XML的Java类库。官方上的介绍是：dom4j is an easy to use, open source library for working with XML, XPath and XSLT on the Java platform using the Java Collections Framework and with full support for DOM, SAX and JAXP.
+ （ Dom4j是一个易用的，开源的类库，用于处理XML、XPath和XSLT。应用于Java平台，采用Java集合框架，完全支持DOM、SAX和JAXP） 
+
+    下载和安装Dom4j就不细说了，下载就是去Dom4j的官方网站 进行下载，安装就是把相关的Jar文件添加到项目的classPath中。这里主要说的是一些基本的应用，基本的应用掌握了，高级的应用看一下API就能知道了。
+     介绍基本应用的顺序就按照“查”、“增”、“删”、“改”的顺序来（为什么要把查放在第一位？因为增、删、改都要借助于查，所以先说明一下查），和数据库 一样。其实在某些情况下XML也是可以和数据库一样储存文件的。原来在做一个项目的时候，由于信息条数固定、信息量少、改动频率少，所以就决定直接采用了 XML来储存信息而没有用数据库，结果速度不错，也还比较稳定。
+ 
+首先使用Dom4j创建一个XML文件： 
+
+
+01. publicvoidcreateXml() throwsException { 
+
+02.      Document document = DocumentHelper.createDocument(); 
+
+03.       // 首先创建一个根节点base 
+
+04.      Element root = document.addElement( "base" ); 
+
+05.      // 然后再在根节点base下面创建games子节点 
+
+06.      Element gamesElm = root.addElement( "games" ); 
+
+07.      // 给games节点添加一个注释 
+
+08.      gamesElm.addComment( "我喜欢的游戏" ); 
+
+09.      // 在games节点下，再建立game子节点 
+
+10.      Element gameElm = gamesElm.addElement( "game" ); 
+
+11.      // 给game节点添加两个属性：游戏名称、游戏公司 
+
+12.      gameElm.addAttribute( "name" , "波斯王子" ); 
+
+13.      gameElm.addAttribute( "company" , "UBISOFT" ); 
+
+14.      
+
+15.      // 按照上面步逐再添加两个游戏 
+
+16.      gameElm = gamesElm.addElement( "game" ); 
+
+17.      gameElm.addAttribute( "name" , "实况足球" ); 
+
+18.      gameElm.addAttribute( "company" , "KONAMI" ); 
+
+19.   
+
+20.      gameElm = gamesElm.addElement( "game" ); 
+
+21.      gameElm.addAttribute( "name" , "使命召唤" ); 
+
+22.      gameElm.addAttribute( "company" , "Activision" ); 
+
+23.   
+
+24.      // 再增加一个author作者的子节点 
+
+25.      Element author = gamesElm.addElement( "author" ); 
+
+26.      // 把作者的值设置成“亚特兰蒂斯” 
+
+27.      author.setText( "亚特兰蒂斯" ); 
+
+28.   
+
+29.      // 把内容写入到文件中 
+
+30.      XMLWriter writer = newXMLWriter( newFileOutputStream( newFile( 
+
+31.          "G:/demo.xml" ))); 
+
+32.      writer.write(document); 
+
+33.      writer.close(); 
+
+34. } 
+
+运行后在G盘就生成了一个demo.xml文件，查看其中内容：
+ 
+
+
+01. <? xmlversion = "1.0"encoding = "UTF-8" ?> 
+
+02. < base > 
+
+03.      < games > 
+
+04.          <!--我喜欢的游戏--> 
+
+05.          < gamename = "波斯王子"company = "UBISOFT" /> 
+
+06.          < gamename = "实况足球"company = "KONAMI" /> 
+
+07.          < gamename = "使命召唤"company = "Activision" /> 
+
+08.          < author >亚特兰蒂斯</ author > 
+
+09.      </ games > 
+
+10. </ base > 
+
+<span style="font-size: 32px;"><span style="color: #ffcc00;">查：</span></span><span style="color: #ff0000;">
+</span> 
+1.查找出我喜欢玩的游戏的名称（由于游戏名称是放在game节点的name属性中的，所以相当于查找节点的属性值）
+ 
+
+
+01. publicvoidfindAttribute() throwsException { 
+
+02.      /* 
+
+03.      * SAX是Simple API for XML的简写。它和DOM 
+
+04.      * （Document Object Model）一样，是一种解析XML文件的方案。 
+
+05.      * Dom4j提供的SAXReader和DOMReader都可以创建一个Document。 
+
+06.      * 那么DOM和SAX有什么不同呢？ 
+
+07.      * SAX是基于事件的API，DOM是基于树的API。 
+
+08.      * DOM将XML的内容一次性读入内存中，然后再进行操作； 
+
+09.      * SAX是按树型结构遍历XML文件，一次只取出节点处的内容到内存中进行操作。 
+
+10.      */ 
+
+11.      SAXReader reader = newSAXReader(); 
+
+12.      /* SAXReader根据XML文件的路径创建出一个Document */ 
+
+13.      Document document = reader.read( newFile( "G:/demo.xml" )); 
+
+14.      /* 然后遍历Document根节点下的games节点的game子节点的name属性，得到一个List */ 
+
+15.      List list = document.selectNodes( "//games/game/@name" ); 
+
+16.      Iterator iter = list.iterator(); 
+
+17.      while(iter.hasNext()) { 
+
+18.          /* 获取name属性，然后得到属性值进行打印 */ 
+
+19.          Attribute attribute = (Attribute) iter.next(); 
+
+20.          System.out.println(attribute.getValue()); 
+
+21.      } 
+
+22. } 
+
+2.查找出这个XML文件的作者是谁（作者是一个单独的author节点，所以相当于查找节点的值）
+ 
+
+
+01. publicvoidfindNode() throwsException { 
+
+02.      SAXReader reader = newSAXReader(); 
+
+03.      Document document = reader.read( newFile( "G:/demo.xml" )); 
+
+04.      List list = document.selectNodes( "//games/author" ); 
+
+05.      Iterator iter = list.iterator(); 
+
+06.      while(iter.hasNext()) { 
+
+07.          /* 获取author节点，然后得到它的值进行打印 */ 
+
+08.          Element element = (Element) iter.next(); 
+
+09.          System.out.println(element.getText()); 
+
+10.      } 
+
+11. } 
+
+注：在上面查找属性和节点的两个 例子中，在查找（selectNodes）的时候都有一个奇怪的表达式（//games/game/@name、//games/author）。这个表 达式就是XPath表达式。它是一门在XML文档中查找信息的表达式，用于在XML文档中通过节点和属性进行导航。
+ //games/game/@name的含义就是：在根节点下的games节点的game子节点的name属性。
+ //gmaes/author的含义就是：在根节点下的games节点的author子节点。 
+
+
+<span style="font-size: 32px; color: rgb(255, 0, 0); background-color: rgb(255, 255, 0);">增：</span> 
+增加一个我喜欢玩的游戏（就魔兽吧，其实准确的来说应该是DOTA）
+ 
+
+01. publicvoidadd() throwsException { 
+
+02.      SAXReader reader = newSAXReader(); 
+
+03.      Document document = reader.read( newFile( "G:/demo.xml" )); 
+
+04.      /* 查找games节点，然后在这个节点下添加一个game子节点 */ 
+
+05.      List list = document.selectNodes( "//games" ); 
+
+06.      Iterator iter = list.iterator(); 
+
+07.      while(iter.hasNext()) { 
+
+08.          Element gamesElm = (Element) iter.next(); 
+
+09.          Element gameElm = gamesElm.addElement( "game" ); 
+
+10.          gameElm.addAttribute( "name" , "魔兽" ); 
+
+11.          gameElm.addAttribute( "company" , "暴雪公司" ); 
+
+12.      } 
+
+13.      XMLWriter writer = newXMLWriter( newFileOutputStream( newFile( 
+
+14.              "G:/demo.xml" ))); 
+
+15.      writer.write(document); 
+
+16.      writer.close(); 
+
+17. } 
+
+
+<span style="font-size: 32px;"><span style="color: #ffff00;">删：</span></span> 
+删除一个我喜欢玩的游戏（还是魔兽吧）
+ 
+
+01. publicvoidremove() throwsException { 
+
+02.      SAXReader reader = newSAXReader(); 
+
+03.      Document document = reader.read( newFile( "G:/demo.xml" )); 
+
+04.      /* 查找games节点 */ 
+
+05.      List list = document.selectNodes( "//games" ); 
+
+06.      Iterator iter = list.iterator(); 
+
+07.      while(iter.hasNext()) { 
+
+08.          Element gamesElm = (Element) iter.next(); 
+
+09.          /* 获取games节点下的所有game子节点 */ 
+
+10.          Iterator gameElms = gamesElm.elementIterator( "game" ); 
+
+11.          while(gameElms.hasNext()) { 
+
+12.              Element gameElm = (Element)gameElms.next(); 
+
+13.              /* 如果某个game子节点的name属性值是“魔兽”，则删除这个子节点 */ 
+
+14.              if( "魔兽" .equalsIgnoreCase(gameElm.attributeValue( "name" ))) { 
+
+15.              gamesElm.remove(gameElm); 
+
+16.          } 
+
+17.      } 
+
+18. } 
+
+19. XMLWriter writer = newXMLWriter( newFileOutputStream( newFile( 
+
+20. "G:/demo.xml" ))); 
+
+21. writer.write(document); 
+
+22. writer.close(); 
+
+23.   
+
+24. } 
+
+
+<span style="font-size: 32px;"><span style="color: #ffff00;">改： </span></span>
+把出品商UBISOFT改成中文 – 育碧公司
+ 
+
+01. publicvoidtest2() throwsException { 
+
+02.      SAXReader reader = newSAXReader(); 
+
+03.      Document document = reader.read( newFile( "G:/demo.xml" )); 
+
+04.      /* 查找所有的company属性 */ 
+
+05.      List list = document.selectNodes( "//games/game/@company" ); 
+
+06.      Iterator iter = list.iterator(); 
+
+07.      while(iter.hasNext()) { 
+
+08.          Attribute attribute = (Attribute) iter.next(); 
+
+09.          /* 如果company的属性值为“UBISOFT”，那么则把这个属性值重置为“育碧公司” */ 
+
+10.          if( "UBISOFT" .equalsIgnoreCase(attribute.getValue())) { 
+
+11.              attribute.setValue( "育碧公司" ); 
+
+12.          } 
+
+13.      } 
+
+14.   
+
+15.      XMLWriter writer = newXMLWriter( newFileOutputStream( newFile( 
+
+16.              "G:/demo.xml" ))); 
+
+17.      writer.write(document); 
+
+18.      writer.close(); 
+
+19. } 
+
+另外如果要得到根节点，就不能使用XPath表达式了。因为如果使用XPath表示根节点就是“//”，这是不允许的，会出现异常。而且也没有必要这么麻烦，直接document.getRootElement()就行了。
+ 还可以得到XML文件的一些基本属性。比如：XML文件编码 – document.getXMLEncoding()、XML源文件 – document.asXML()、节点起始位置 – document.getPath()。
+ 
+以上是我在学习中的一点笔记，可能有不准确的地方，大家兼听慎取
