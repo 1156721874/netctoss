@@ -1,0 +1,11 @@
+#Sun Apr 20 18:21:09 CST 2014
+eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/account/addAccount.jsp=UTF-8
+encoding//WebRoot/WEB-INF/main/login.jsp=UTF-8
+encoding//WebRoot/WEB-INF/privilege/privilege_list.jsp=UTF-8
+encoding//WebRoot/styles/global.css=UTF-8
+encoding//WebRoot/styles/global_color.css=UTF-8
+encoding//src/Util/ImageUtil.java=UTF-8
+encoding//src/Util/MD5Util.java=UTF-8
+encoding//src/sql/allSql.sql=UTF-8
+encoding/<project>=UTF-8

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd ">
+
+<context:component-scan base-package="dao"></context:component-scan>
+<context:component-scan base-package="com.netctoss.action.cost"></context:component-scan>
+<context:component-scan base-package="com.netctoss.action.account"></context:component-scan>
+<context:component-scan base-package="com.netctoss.action.admin"></context:component-scan>
+<context:component-scan base-package="com.netctoss.action.service"></context:component-scan>
+<context:component-scan base-package="com.netctoss.action.role"></context:component-scan>
+<context:component-scan base-package="com.netctoss.action.serviceInfo"></context:component-scan>
+<context:component-scan base-package="com.netctoss.action.privilege"></context:component-scan>
+<context:component-scan base-package="Util"></context:component-scan>
+
+<aop:aspectj-autoproxy />
+<bean id="mydatasource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url"
+			value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL">
+		</property>
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="password" value="operater"></property>
+		<property name="username" value="SCOTT"></property>
+		<!-- 最大连接数  -->
+		<property name="maxActive" value="20"></property>
+		<!-- 初始连接数 -->
+		<property name="initialSize" value="2"></property>
+	</bean>
+
+	<!-- LocalSessionFactoryBean是sessionFactory的子类 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!--xxx hbm.xml -->
+		<property name="mappingResources">
+			<list>
+				<value>pojo/Cost.hbm.xml</value>
+				<value>pojo/Account.hbm.xml</value>
+				<value>pojo/Service.hbm.xml</value>
+				<value>pojo/AdminInfo.hbm.xml</value>
+				<value>pojo/AdminRole.hbm.xml</value>
+				<value>pojo/Role.hbm.xml</value>
+				<value>pojo/RolePrivilege.hbm.xml</value>
+			</list>
+		</property>
+		<!-- Hibernate参数 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.connection.autocommit">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+		<!--给HibernateDaoSupport 注入资源 -->
+		<property name="dataSource" ref="mydatasource"></property>
+	</bean>
+	
+	<!-- 配置事务 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 定义调用存储过程的Bean -->
+	<bean id="mailtask" 
+		class="Util.mail.MailTask">
+		<!-- <property name="sessionFactory" ref="sessionFactory">
+		</property> -->
+	</bean>
+	<!-- 将createBill定义成任务 -->
+	<bean id="createmailtask" 
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="mailtask">
+		</property>
+		<property name="targetMethod" value="task">
+		</property>
+	</bean>
+	<!-- 将任务指定触发时间和频率 -->
+	<bean id="createMailTrigger" 
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="createmailtask" />
+		</property>
+		<property name="cronExpression">
+			<!-- 每月1日凌晨0点启动 -->
+			<value>0 0/1 * * * ?</value>
+		</property>
+	</bean>
+	<!-- 将任务触发器交给调度器运行 -->
+	<bean id="schedulerFactoryBean"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="createMailTrigger" />
+			</list>
+		</property>
+	</bean>
+	<!--proxy-target-class="true"采用CGLB生成子类实现代理，反之是用JDK的代理方式  -->
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
+	<!--
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="AccountDetailAction" read-only="true" />
+			<tx:method name="Add*" propagation="REQUIRED" />
+			<tx:method name="Delete*" propagation="REQUIRED" />
+			<tx:method name="Update*" propagation="REQUIRED" />
+			<tx:method name="PauseAccountAction" propagation="REQUIRED" />
+			<tx:method name="StartAccountAction" propagation="REQUIRED" />
+			<tx:method name="To*" read-only="true" />
+			<tx:method name="Find*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+	<aop:pointcut id="actionPoint" expression="within(com.netctoss.action.*)" />
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="actionPoint"/>
+	</aop:config>
+-->
+
+</beans>

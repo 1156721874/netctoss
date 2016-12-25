@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="service" namespace="/service" extends="netctoss">
+	<action name="findService" class="FindServiceAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<param name="pagesize">4</param>
+	<result name="success">/WEB-INF/service/service_list.jsp</result>
+	</action>
+	
+	<action name="toAddService" class="ToAddServiceAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<result name="success">/WEB-INF/service/service_add.jsp</result>
+	</action>
+	<!-- 增加业务 -->
+	<action name="addService" class="AddServiceAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<result name="success" type="redirectAction">findService</result>
+	</action>
+	<!-- 核对身份证所对帐务帐号是否存在 -->
+	<action name="checkidcard" class="CheckIdCardAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<result name="success" type="json">
+	<param name="root">account</param>
+	</result>
+	</action>
+	
+	<action name="pauseService" class="PauseServiceAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<result name="success" type="json">
+	<param name="root">pass</param>
+	</result>
+	</action>
+	
+	<action name="startService" class="StartServiceAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="json">
+	<param name="root">pass</param>
+	</result>
+	</action>
+	
+	<action name="toUpdateService" class="ToUpdateServiceAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<result name="success">/WEB-INF/service/service_modi.jsp </result>
+	</action>
+	
+	<action name="UpdateService" class="UpdateServiceAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<result name="success" type="redirectAction">findService</result>
+	</action>
+	
+	<action name="deleteservice" class="DeleteServiceAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<result name="success" type="json">
+	<param name="root">pass</param>
+	 </result>
+	</action>
+	
+	<action name="service_detail" class="FindServiceDetailAction">
+	<interceptor-ref name="loginStack"></interceptor-ref>
+	<result name="success">/WEB-INF/service/service_detail.jsp</result>
+	</action>
+	
+	</package>
+</struts>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="account" namespace="/account" extends="netctoss">
+		<!-- 查看所有帐务 -->
+		<action name="findaccount" class="findAccountAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<param name="pagesize">4</param>
+			<result name="success">
+				/WEB-INF/account/findAccount.jsp
+			</result>
+		</action>
+		<!-- 跳转到主页 -->
+		<action name="toindex">
+			<result name="">/WEB-INF/main/index.jsp</result>
+		</action>
+		<!-- 跳转到添加帐务的页面 -->
+		<action name="toAddCost">
+		<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">
+				/WEB-INF/account/addAccount.jsp
+			</result>
+		</action>
+		<!-- 增加帐务 -->
+		<action name="addaccount" class="AddAccountAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="redirectAction">
+				findaccount
+			</result>
+		</action>
+		<!-- 删除帐务 -->
+		<action name="deleteaccount" class="DeleteAccountAction">
+		<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="json">
+					<param name="root">pass</param>
+		</result>
+		</action>
+		<action name="validateRecommender" class="ValidateRecommenderAction">
+		<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="json">
+		<param name="root">pass</param>
+		</result>
+		</action>
+		<!-- 开通的Action -->
+		<action name="startAccount" class="StartAccountAction">
+		<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">pass</param>
+			</result>
+		</action>
+				<!-- 暂停的Action -->
+		<action name="pauseAccount" class="PauseAccountAction">
+		<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">pass</param>
+			</result>
+		</action>
+<action name="accountDetail" class="AccountDetailAction">
+<interceptor-ref name="loginStack"></interceptor-ref>
+<result name="success">/WEB-INF/account/account_detail.jsp</result>
+</action>
+
+<action name="toUpdate" class="ToUpdateAccountAction">
+<interceptor-ref name="loginStack"></interceptor-ref>
+<result name="success">
+/WEB-INF/account/account_modi.jsp
+</result>
+</action>
+
+<action name="updateAccount" class="UpdateAccountAction">
+<interceptor-ref name="loginStack"></interceptor-ref>
+<result name="success" type="redirectAction">findaccount</result>
+</action>
+
+<action name="checkaccountpwd" class="CheckAccountPwdAction">
+<interceptor-ref name="loginStack"></interceptor-ref>
+<result name="success" type="json">
+<param name="root">pwd</param>
+</result>
+</action>
+
+<action name="updatepassword" class="UpdatePasswordAction">
+<interceptor-ref name="loginStack"></interceptor-ref>
+<result name="success" type="json">
+<param name="root">pass</param>
+</result>
+</action>
+
+<action name="findAccountByRealName" class="FindAccountByRealName">
+<interceptor-ref name="loginStack"></interceptor-ref>
+<result name="success" type="json">
+<param name="root">pass</param>
+</result>
+</action>
+
+	</package>
+</struts>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="admin" namespace="/admin" extends="netctoss">
+		<action name="findAdmin" class="findAdminAction">
+		 <interceptor-ref name="loginStack"></interceptor-ref>
+		<param name="pagesize">3</param>
+		<result name="success">/WEB-INF/admin/admin_list.jsp</result></action>
+		
+		<action name="resetPassword" class="resetPasswordAction">
+		<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="json">
+		<param name="root">pass</param>
+		</result></action>
+
+		<action name="toAddAdmin" class="toAddAdminAction">
+		<interceptor-ref name="loginStack"></interceptor-ref> 
+		<result name="success">
+		/WEB-INF/admin/admin_add.jsp
+		</result>
+		</action>
+		<action name="addAdmin" class="AddAdminAction">
+		<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="redirectAction">findAdmin</result>
+		</action>
+		<action name="toUpdate" class="toUpdateAdminAction">
+		<interceptor-ref name="loginStack"></interceptor-ref> 
+		<result name="success">/WEB-INF/admin/admin_modi.jsp</result>
+		</action>
+		<action name="UpdateAdmin" class="updateAdminAction">
+	    <interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="redirectAction">findAdmin</result>
+		</action>
+		<action name="deleteAdmin" class="deleteAdminAction">
+		<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="redirectAction">findAdmin</result>
+		</action>
+		<action name="findAdminById" class="findAdminAction" method="findAdminById">
+			<result name="success">/WEB-INF/user/user_info.jsp</result>
+		</action>
+		<action name="updateuser" class="findAdminAction" method="updateUser">
+		<result name="success" type="redirectAction">findAdminById</result>
+		</action>
+		<action name="tomodpasswd" >
+		<result name="success">/WEB-INF/user/user_modi_pwd.jsp</result>
+		</action>
+		<action name="modpassword" class="findAdminAction" method="modPassword">
+		<result name="success" type="redirectAction">tomodpasswd</result>
+		</action>
+	</package>
+</struts>

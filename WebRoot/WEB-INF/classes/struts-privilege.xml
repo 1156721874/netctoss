@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="privilege" namespace="/privilege" extends="netctoss">
+		<!-- 查询所有权限url -->
+		<action name="findPrivilege" class="PrivilegeAction" method="list">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+		 <result name="success">/WEB-INF/privilege/privilege_list.jsp</result>
+		</action>
+		
+		<action name="toaddPrivilege" >
+			<interceptor-ref name="loginStack"></interceptor-ref>
+		 <result name="success">/WEB-INF/privilege/privilege_add.jsp</result>
+		</action>
+		
+		<action name="addPrivilege" class="PrivilegeAction" method="addPrivilege" >
+			<interceptor-ref name="loginStack"></interceptor-ref>
+		 <result name="success" type="redirectAction" >findPrivilege</result>
+		</action>
+		
+		<action name="checkIsExistId" class="PrivilegeAction" method="checkIsExistId" >
+			<interceptor-ref name="loginStack"></interceptor-ref>
+		 <result name="success" type="json">
+		 <param name="root">existid</param>
+		 </result>
+		</action>
+		
+		<action name="toModPrivilege" class="PrivilegeAction" method="toModPrivilege">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success">/WEB-INF/privilege/privilege_mod.jsp</result>
+		</action>
+		
+		<action name="modPrivilege" class="PrivilegeAction" method="modPrivilege">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="redirectAction">findPrivilege</result>
+		</action>
+		
+		<action name="delprivilege" class="PrivilegeAction" method="delPrivilege">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+		<result name="success" type="redirectAction">findPrivilege</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-systems VERSION="2.0.0" application-name="netctoss"
+ model-entity="FileSystems" workspace-home="./WebRoot/WEB-INF">
+ <file-system NAME="WEB-INF" location="%workspace.home%" model-entity="FileSystemFolder"/>
+ <file-system NAME="WEB-ROOT" info="Content-Type=Web"
+  location="%workspace.home%/.." model-entity="FileSystemFolder"/>
+ <file-system NAME="src" location="%workspace.home%/../../src" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib" location="%workspace.home%/lib" model-entity="FileSystemFolder"/>
+ <file-system NAME="classes" location="%workspace.home%/classes" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib-javaee.jar"
+  location="D:\Myeclipse10.0\Common\plugins\com.genuitec.eclipse.j2eedt.core_10.0.0.me201110301321\data\libraryset\EE_5\javaee.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-impl.jar"
+  location="D:\Myeclipse10.0\Common\plugins\com.genuitec.eclipse.j2eedt.core_10.0.0.me201110301321\data\libraryset\EE_5\jsf-impl.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-api.jar"
+  location="D:\Myeclipse10.0\Common\plugins\com.genuitec.eclipse.j2eedt.core_10.0.0.me201110301321\data\libraryset\EE_5\jsf-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jstl-1.2.jar"
+  location="D:\Myeclipse10.0\Common\plugins\com.genuitec.eclipse.j2eedt.core_10.0.0.me201110301321\data\libraryset\EE_5\jstl-1.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-antlr-2.7.6.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\antlr-2.7.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-asm-attrs.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\asm-attrs.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-asm.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\asm.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-c3p0-0.9.1.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\c3p0-0.9.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-cglib-2.1.3.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\cglib-2.1.3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-collections-2.1.1.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\commons-collections-2.1.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-logging-1.0.4.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\commons-logging-1.0.4.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-dom4j-1.6.1.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\dom4j-1.6.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-ehcache-1.2.3.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\ehcache-1.2.3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-freemarker.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\freemarker.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-tools.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\hibernate-tools.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate3.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\hibernate3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jta.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\jta.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-junit-4.4.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\junit-4.4.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-log4j-1.2.11.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\hibernate\log4j-1.2.11.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-beanutils.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\json\commons-beanutils.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-collections.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\json\commons-collections.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-logging.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\json\commons-logging.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-ezmorph-1.0.6.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\json\ezmorph-1.0.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-json-lib-2.2.3-jdk15.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\json\json-lib-2.2.3-jdk15.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-aspectjrt.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\aspectjrt.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-aspectjweaver.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\aspectjweaver.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-cglib-nodep-2.1_3.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\cglib-nodep-2.1_3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-collections-3.1.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\commons-collections-3.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-dbcp-1.2.2.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\commons-dbcp-1.2.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-pool.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\commons-pool.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-spring-webmvc.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\spring-webmvc.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-spring.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\spring.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-struts2-spring-plugin-2.1.8.1.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\spring\struts2-spring-plugin-2.1.8.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-fileupload-1.2.1.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\struts2\commons-fileupload-1.2.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-io-1.3.2.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\struts2\commons-io-1.3.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-freemarker-2.3.15.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\struts2\freemarker-2.3.15.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-ognl-2.7.3.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\struts2\ognl-2.7.3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-struts2-core-2.1.8.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\struts2\struts2-core-2.1.8.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-struts2-json-plugin-2.1.8.1.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\struts2\struts2-json-plugin-2.1.8.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-xwork-core-2.1.6.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\struts2\xwork-core-2.1.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-ojdbc15.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\ojdbc15.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sigar-1.6.5.132.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\sigar-1.6.5.132.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-Zxing.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\Zxing.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-lang-2.6.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\json\commons-lang-2.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-mail-1.4.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\mail-1.4.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-quartz-all-1.6.6.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\quartz-all-1.6.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jaxen-1.1-beta-6.jar"
+  location="E:\Study\tarenaspace\netctoss\WebRoot\WEB-INF\lib\jaxen-1.1-beta-6.jar" model-entity="FileSystemJar"/>
+ <web SERVLET_VERSION="2.4" model-entity="JstWeb" model-path="/web.xml">
+  <module URI="/WEB-INF/faces-config.xml" model-entity="WebJSFModule"
+   model-path="/faces-config.xml" src="src" web-root="WEB-ROOT"/>
+ </web>
+</file-systems>

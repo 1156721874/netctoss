@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- <constant name="struts.i18n.encoding" value="utf-8" /> -->
+	<constant name="struts.devMode" value="true" />
+	
+	<!-- <include file="struts-core.xml"></include> -->
+	<include file="struts-cost.xml"></include>
+	<include file="struts-login.xml"></include>
+	<include file="struts-account.xml"></include>
+	<include file="struts-service.xml"></include>
+	<include file="struts-role.xml"></include>
+	<include file="struts-admin.xml"></include>
+	<include file="struts-serverconfig.xml"></include>
+	<include file="struts-privilege.xml"></include>
+	
+	<!-- 全局包 -->
+	<package name="netctoss"  extends="json-default">
+		<interceptors>
+			<!-- 自定义拦截器，用于登录检查 -->
+			<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor"></interceptor>
+			<!-- 自定义拦截器，用于关闭session -->
+			<interceptor name="sessioninview" class="interceptor.SessionInViewInterceptor"></interceptor>
+		
+			<!-- 自定义拦截器栈 -->
+			<interceptor-stack name="loginStack">
+				  <interceptor-ref name="loginInterceptor"></interceptor-ref> 
+			      <!-- <interceptor-ref name="sessioninview"></interceptor-ref>  -->
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 通用的result当前包都可用 -->
+		<global-results>
+			<result name="login" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">toLogin</param>
+			</result>
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+		     <result name="nopower">/nopower.html</result>   
+		</global-results>
+		
+		<action name="login">
+		<result name="success">/WEB-INF/main/index.jsp</result>
+		</action>
+		<action name="toindex">
+		<result name="success">/WEB-INF/main/index.jsp</result>
+		</action>
+	</package>
+</struts>

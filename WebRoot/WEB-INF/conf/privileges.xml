@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<privileges> 
+  <privilege id="1"> 
+    <name>角色管理</name>  
+    <urls> 
+      <url>/role/toRole</url>  
+      <url>/role/toAddRole</url>  
+      <url>/role/addRole</url>  
+      <url>/role/toUpdateRole</url>  
+      <url>/role/updateAction</url>  
+      <url>/role/deleterole</url> 
+    </urls> 
+  </privilege>  
+  <privilege id="3"> 
+    <name>资费管理</name>  
+    <urls> 
+      <url>/cost/findCost</url>  
+      <url>/cost/deleteCost</url>  
+      <url>/cost/toAddCost</url>  
+      <url>/cost/AddCost</url>  
+      <url>/cost/AddCostValidate</url>  
+      <url>/cost/toUpdateCost</url>  
+      <url>/cost/updateCost</url>  
+      <url>/cost/updateCostValidate</url>  
+      <url>/cost/startCost</url>  
+      <url>/cost/toCostDetail</url> 
+    </urls> 
+  </privilege>  
+  <privilege id="4"> 
+    <name>账务账号</name>  
+    <urls> 
+      <url>/account/findaccount</url>  
+      <url>/account/toAddCost</url>  
+      <url>/account/addaccount</url>  
+      <url>/account/deleteaccount</url>  
+      <url>/account/validateRecommender</url>  
+      <url>/account/startAccount</url>  
+      <url>/account/pauseAccount</url>  
+      <url>/account/accountDetail</url>  
+      <url>/account/toUpdate</url>  
+      <url>/account/updateAccount</url>  
+      <url>/account/checkaccountpwd</url>  
+      <url>/account/updatepassword</url>  
+      <url>/account/findAccountByRealName</url> 
+    </urls> 
+  </privilege>  
+  <privilege id="5"> 
+    <name>业务账号</name>  
+    <urls> 
+      <url>/service/findService</url>  
+      <url>/service/toAddService</url>  
+      <url>/service/addService</url>  
+      <url>/service/checkidcard</url>  
+      <url>/service/pauseService</url>  
+      <url>/service/startService</url>  
+      <url>/service/toUpdateService</url>  
+      <url>/service/UpdateService</url>  
+      <url>/service/deleteservice</url>  
+      <url>/service/service_detail</url> 
+    </urls> 
+  </privilege>  
+  <privilege id="6"> 
+    <name>服务器</name>  
+    <urls> 
+      <url>/serverconfig/toconfiginfo</url>  
+      <url>/serverconfig/toServerconfig</url>  
+      <url>/serverconfig/towarninfo</url>  
+      <url>/serverconfig/towmodifyser</url> 
+    </urls> 
+  </privilege>  
+  <privilege id="7"> 
+    <name>权限</name>  
+    <urls> 
+      <url>/privilege/findPrivilege</url>  
+      <url>/privilege/toaddPrivilege</url>  
+      <url>/privilege/addPrivilege</url>  
+      <url>/privilege/checkIsExistId</url>  
+      <url>/privilege/toModPrivilege</url>  
+      <url>/privilege/modPrivilege</url>  
+      <url>/privilege/delprivilege</url> 
+    </urls> 
+  </privilege>  
+  <privilege id="2">
+    <name>管理员</name>
+    <urls>
+      <url>/admin/findAdmin</url>
+      <url>/admin/toAddAdmin</url>
+      <url>/admin/addAdmin</url>
+      <url>/admin/toUpdate</url>
+      <url>/admin/UpdateAdmin</url>
+      <url>/admin/deleteAdmin</url>
+      <url>/admin/resetPassword</url>
+      <url>/admin/findAdminById</url>
+      <url>/admin/updateuser</url>
+    </urls>
+  </privilege>
+</privileges>
